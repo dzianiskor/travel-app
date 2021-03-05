@@ -13,25 +13,21 @@ import CountryPageContainer from "./Containers/CountryPageContainer";
 
 function App({lang}) {
 
-    //console.log('langApp', lang)
-    const { t, i18n } = useTranslation();
+    const { t, i18n } = useTranslation(); // Для мультиязычности
 
 
-    const {token, login, logout, userId} = useAuth()
-    const isAuthenticated = !!token
+    const {token, login, logout, userId} = useAuth() // Баловавался с back-end лучше переделать
+    const isAuthenticated = !!token   //+
+
 
 
     return (
         <div className="App">
             <HeaderContainer i18n={i18n} lang={lang}  />
-{/*            <div><h1>{t("title")}</h1></div>
-            <div>{t("description.part1")}</div>
-            <div>{t("description.part2")}</div>*/}
+
             <Route path={'/'} exact render={() => <OwnPageContainer lang={lang} t={t} />} />
             <Route path={'/country/:id'}  render={() => <CountryPageContainer t={t} />} />
-{/*
-            <h1 className={s.h1}>Hello {!!userId && userId}</h1>
-*/}
+
             <Route path={'/register'} render={() => <RegisterPage login={login}/>}/>
             <Route path={'/login'} render={() => <LoginPage login={login}/>}/>
         </div>

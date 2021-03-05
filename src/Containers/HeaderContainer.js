@@ -12,6 +12,7 @@ const HeaderContainer = (props) => {
 
 
     useEffect(() => {
+        // для смены языка
         if (props.lang === 'Русский') {
             props.i18n.changeLanguage('ru')
         } else if (props.lang === 'English') {
@@ -35,12 +36,12 @@ const mapStateToProps = (state) => {
     }
 };
 
-
+// compose позволяет обернуть компоненты в контейнерные
 export default compose(
     connect(mapStateToProps, {
         editLang,
         editArr,
         editInputValue,
     }),
-    withRouter
+    withRouter, /*позволяет анализировать url */
 ) (HeaderContainer);

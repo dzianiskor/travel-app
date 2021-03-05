@@ -22,7 +22,7 @@ let reducers = combineReducers({
 const persistConfig = {
     key: 'ReactEPAMLobikov',
     storage: storage,
-    whitelist: ['LangReducer'] // which reducer want to store
+    whitelist: ['LangReducer'] // which reducer want to locastore
 };
 
 const pReducer = persistReducer(persistConfig, reducers);

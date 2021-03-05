@@ -11,10 +11,10 @@ function DeleteTooIndexInArr(arr) {
 }
 
 const OneArrAddTwoArrInNewArr = (firstArr, secondArr) => {
-    let Dima = [];
+    let arr = [];
 
-    Dima = firstArr.concat(secondArr)
-    return Dima
+    arr = firstArr.concat(secondArr)
+    return arr
 }
 
 export const SearchFunction = (lang, countrysForCard, inputValue) => {
@@ -24,9 +24,9 @@ export const SearchFunction = (lang, countrysForCard, inputValue) => {
             let first = countrysForCard.filter(el => (el.country.ru.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0))
             let second = countrysForCard.filter(el => (el.capital.ru.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0))
             //return DeleteTooIndexInArr(OneArrAddTwoArrInNewArr(first, second))
-            let Dima = [];
-            Dima = first.concat(second)
-            return DeleteTooIndexInArr(Dima)
+            let arr = [];
+            arr = first.concat(second)
+            return DeleteTooIndexInArr(arr)
 
 
         }
