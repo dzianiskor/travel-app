@@ -51,3 +51,6 @@ export const SearchFunction = (lang, countrysForCard, inputValue) => {
 }
 
 
+
+
+

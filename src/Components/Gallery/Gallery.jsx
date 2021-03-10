@@ -14,7 +14,6 @@ const Gallery = ({allArr, id, lang}) => {
     let dima = []
 
     allArr[id].gallery.forEach(el => dima.push(el.desc))
-    //console.log('dima', dima)
 
     let photos = [];
     allArr[id].gallery.forEach(el => photos.push({
@@ -24,9 +23,7 @@ const Gallery = ({allArr, id, lang}) => {
 
 
 
-    //let imgCol = allArr[id].gallery.map(el => el)
 
-    //console.log('imgCol', imgCol)
 
     const images = [
         {

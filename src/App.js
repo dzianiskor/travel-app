@@ -11,13 +11,14 @@ import OwnPageContainer from "./Containers/OwnPageContainer";
 import CountryPageContainer from "./Containers/CountryPageContainer";
 
 
+
 function App({lang}) {
 
     const { t, i18n } = useTranslation(); // Для мультиязычности
 
 
     const {token, login, logout, userId} = useAuth() // Баловавался с back-end лучше переделать
-    const isAuthenticated = !!token   //+
+    const isAuthenticated = !!token
 
 
 
@@ -27,7 +28,6 @@ function App({lang}) {
 
             <Route path={'/'} exact render={() => <OwnPageContainer lang={lang} t={t} />} />
             <Route path={'/country/:id'}  render={() => <CountryPageContainer t={t} />} />
-
             <Route path={'/register'} render={() => <RegisterPage login={login}/>}/>
             <Route path={'/login'} render={() => <LoginPage login={login}/>}/>
         </div>

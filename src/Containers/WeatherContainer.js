@@ -30,7 +30,6 @@ const mapStateToProps = (state) => {
         isError:state.WeatherReducer.isError,
         lang:state.LangReducer.lang,
 
-
     }
 };
 
@@ -39,6 +38,5 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps, {
         SetWeatherThunk,
-
     })
 ) (WeatherContainer);

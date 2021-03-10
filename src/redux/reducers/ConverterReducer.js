@@ -5,16 +5,17 @@ const SET_VALUE = 'SET_VALUE/ConverterReducer';
 const SET_IS_FETCHING = 'SET_IS_FETCHING/ConverterReducer';
 
 const initialState = {
-    valute: '',
+    valuteDollor: '',
     isFetching: null,
 }
 
 const ConverterReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_VALUE: {
+            debugger
             return {
                 ...state,
-                value:action.val
+                valuteDollor:action.val
             }
         }
         case SET_IS_FETCHING: {

@@ -1,23 +1,34 @@
 import Converter from "../Components/Widgets/Converter/Converter";
 import {compose} from "redux";
+import useEffect from 'react';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {useEffect} from "react/cjs/react.production.min";
+import {setConverter} from "../redux/reducers/ConverterReducer";
 
-const ConverterContainer = (props) => {
+class ConverterContainer extends useEffect.Component {
+
+    componentDidMount() {
+        //this.props.setConverter(this.props.allArr[this.props.match.params.id].ISO, 'USD')
+    }
+
+    render() {
 
 
 
-    return (
-        <Converter {...props} />
+
+        return (
+            <Converter {...this.props} />
 
 
-    )
+        )
+    }
 }
+
 const mapStateToProps = (state) => {
     return {
-        lang:state.LangReducer.lang,
-        allArr:state.CountryPageReducer.allArr,
+        lang: state.LangReducer.lang,
+        allArr: state.CountryPageReducer.allArr,
+        valuteDollor:state.ConverterReducer.valuteDollor,
 
     }
 };
@@ -25,6 +36,7 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, {
+        setConverter,
     }),
     withRouter,
-) (ConverterContainer);
+)(ConverterContainer);

@@ -23,8 +23,6 @@ const OwnPage = ({t, countrysForCard, lang, inputValue, SearchArr}) => {
                 capital={card.capital}
                 img={card.img}
             />)}
-            {/*<CardCountry t={t} lang={lang} country={countrysForCard[0].country} capital={countrysForCard[0].capital}  />*/}
-
         </div>
     );
 };

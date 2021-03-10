@@ -1,15 +1,14 @@
 import React, {useEffect} from 'react';
 import Gallery from "../Gallery/Gallery";
-import ReactPlayer from 'react-player'
 
 
 import s from './CountryPage.module.css'
-import Weather from "../Widgets/Weather/Weather";
 import WeatherContainer from "../../Containers/WeatherContainer";
 import ConverterContainer from "../../Containers/ConverterContainer";
+import Mappp from "../Map/Map";
+import Time from "../Widgets/Time/Time";
 
 const CountryPage = ({match, allArr, lang, t}) => {
-
 
 
 
@@ -41,12 +40,24 @@ const CountryPage = ({match, allArr, lang, t}) => {
 
             <WeatherContainer city={allArr[id].capital.ru} />
             <ConverterContainer />
-            <Gallery id={id} allArr={allArr} lang={lang} />
+            <div>
+                <Time utc={allArr[id].utc} />
+            </div>
+            <Gallery id={id} allArr={allArr} lang={lang}  />
 
 
 {/*
             <ReactPlayer onPlay={() => alert('Валера')}   url='https://www.youtube.com/watch?v=eOFQCDAA9ok' />
 */}
+
+
+            <Mappp country={allArr[id].countryISO}
+                   lang={lang}
+                   zoom={allArr[id].zoom}
+                   coordCapital={allArr[id].coordCapital}
+                   coordCountry={allArr[id].coordCountry} />
+
+            {/*<LeafeMap />*/}
 
 
 
