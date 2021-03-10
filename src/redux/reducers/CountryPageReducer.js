@@ -5,7 +5,7 @@ const initialState = {
             id:0,
             ISO:'BYN',
             imgCountry:'https://minsknews.by/wp-content/uploads/2020/06/Pavel-Rusak-4-of-24.jpg',
-            video:'',
+            video:'https://www.youtube.com/watch?v=FBZtUODY2vI',
             utc:3,
             time:'UTF8',
             countryISO:'BY',
@@ -124,6 +124,7 @@ const initialState = {
         },
         {
             id:1,
+            video:'https://www.youtube.com/watch?v=45Uj-HCrnCw',
             ISO:'UAH',
             utc:2,
             imgCountry:'https://delo.ua/files/news/images/3610/72/picture2_ukraina-podnjalas_361072_p0.jpg',
@@ -245,6 +246,7 @@ const initialState = {
             id:2,
             ISO:'RUB',
             utc:3,
+            video:'https://www.youtube.com/watch?v=h4fhH1fSL3c',
             countryISO:'RU',
             coordCountry:[66.25, 94.15],
             zoom:1,
@@ -363,6 +365,7 @@ const initialState = {
         {
             id:3,
             ISO:'BRL',
+            video:'https://www.youtube.com/watch?v=pF0IA2gBWig',
             utc:-3,
             countryISO:'BR',
             coordCountry:[-16, -48],
@@ -481,6 +484,7 @@ const initialState = {
         },
         {
             id:4,
+            video:'https://www.youtube.com/watch?v=0kXCPo7c63I',
             ISO:'GBP',
             utc:0,
             countryISO:'UK',
@@ -600,6 +604,7 @@ const initialState = {
         },
         {
             id:5,
+            video:'https://www.youtube.com/watch?v=zKaH1dCooQg',
             ISO:'USD',
             utc:-5,
             countryISO:'US',
@@ -719,6 +724,7 @@ const initialState = {
         },
         {
             id:6,
+            video:'https://www.youtube.com/watch?v=fg8fjTlTc_M',
             ISO:'EUR',
             utc:1,
             countryISO:'DE',
@@ -838,6 +844,7 @@ const initialState = {
         {
             id:7,
             ISO:'ОКВ',
+            video:'https://www.youtube.com/watch?v=f0PvMmTAUAQ',
             utc:11,
             countryISO:'DE',
             coordCountry:[-25, 135],
@@ -956,6 +963,7 @@ const initialState = {
         },
         {
             id:8,
+            video:'https://www.youtube.com/watch?v=-kF_HR6rCEQ',
             ISO:'EUR',
             utc:1,
             countryISO:'DE',
