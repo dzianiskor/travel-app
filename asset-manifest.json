@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/travel-app/static/css/main.f0e69e4b.chunk.css",
+    "main.js": "/travel-app/static/js/main.496f2978.chunk.js",
+    "main.js.map": "/travel-app/static/js/main.496f2978.chunk.js.map",
+    "runtime-main.js": "/travel-app/static/js/runtime-main.50df4648.js",
+    "runtime-main.js.map": "/travel-app/static/js/runtime-main.50df4648.js.map",
+    "static/css/2.886ad254.chunk.css": "/travel-app/static/css/2.886ad254.chunk.css",
+    "static/js/2.6ab88ec9.chunk.js": "/travel-app/static/js/2.6ab88ec9.chunk.js",
+    "static/js/2.6ab88ec9.chunk.js.map": "/travel-app/static/js/2.6ab88ec9.chunk.js.map",
+    "index.html": "/travel-app/index.html",
+    "static/css/2.886ad254.chunk.css.map": "/travel-app/static/css/2.886ad254.chunk.css.map",
+    "static/css/main.f0e69e4b.chunk.css.map": "/travel-app/static/css/main.f0e69e4b.chunk.css.map",
+    "static/js/2.6ab88ec9.chunk.js.LICENSE.txt": "/travel-app/static/js/2.6ab88ec9.chunk.js.LICENSE.txt",
+    "static/media/cloudy-day.7fb7ecfc.svg": "/travel-app/static/media/cloudy-day.7fb7ecfc.svg",
+    "static/media/day.c33ef664.svg": "/travel-app/static/media/day.c33ef664.svg",
+    "static/media/getFetch.cjs": "/travel-app/static/media/getFetch.d7d6010d.cjs",
+    "static/media/rainy.130d6250.svg": "/travel-app/static/media/rainy.130d6250.svg",
+    "static/media/snowy.dce3f5e7.svg": "/travel-app/static/media/snowy.dce3f5e7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.50df4648.js",
+    "static/css/2.886ad254.chunk.css",
+    "static/js/2.6ab88ec9.chunk.js",
+    "static/css/main.f0e69e4b.chunk.css",
+    "static/js/main.496f2978.chunk.js"
+  ]
+}
