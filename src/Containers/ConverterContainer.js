@@ -9,9 +9,9 @@ class ConverterContainer extends useEffect.Component {
 
     componentDidMount() {
 
-        this.props.setConverter(this.props.allArr[this.props.match.params.id].ISO, 'USD')
-        this.props.setConverterEUR(this.props.allArr[this.props.match.params.id].ISO, 'EUR')
-        this.props.setConverterRUB(this.props.allArr[this.props.match.params.id].ISO, 'RUB')
+        this.props.setConverter(this.props.youIso, 'USD')
+        this.props.setConverterEUR(this.props.youIso, 'EUR')
+        this.props.setConverterRUB(this.props.youIso, 'RUB')
 
 
     }

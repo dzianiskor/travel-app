@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import s from './Header.module.css'
 import { Input } from 'antd';
 import {editInputValue} from "../../redux/reducers/CountryCardsReducer";
+import {NavLink} from "react-router-dom";
 
 
-const Header = ({lang, editLang, inputValue, i18n, editArr, location, editInputValue}) => {
-
+const Header = ({lang, editLang, inputValue, i18n, editArr, location, editInputValue, t}) => {
 
 
     const { Search } = Input;
@@ -29,6 +29,7 @@ const Header = ({lang, editLang, inputValue, i18n, editArr, location, editInputV
                 }}
                         placeholder="input search text" allowClear  style={{ width: 200 }} />
             </div>}
+            {location.pathname !== '/' && <NavLink to={'/'}><div>{t("header.main")}</div></NavLink>}
         </div>
     );
 };

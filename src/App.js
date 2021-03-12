@@ -24,7 +24,7 @@ function App({lang}) {
 
     return (
         <div className="App">
-            <HeaderContainer i18n={i18n} lang={lang}  />
+            <HeaderContainer t={t} i18n={i18n} lang={lang}  />
 
             <Route path={'/'} exact render={() => <OwnPageContainer lang={lang} t={t} />} />
             <Route path={'/country/:id'}  render={() => <CountryPageContainer t={t} />} />

@@ -36,12 +36,10 @@ const WeatherReducer = (state = initialState, action) => {
     }
 }
 
-// Action creators
 const SetWeather = (weather) => ({type: SET_WEATHER, weather})
 const IsFetching = (isFetching) => ({type: IS_FEATCHING, isFetching})
 const IsError = (error) => ({type: IS_ERROR, error})
 
-// Редакс санк
 export const SetWeatherThunk = (city, language) => async (dispatch) => {
     try {
         dispatch(IsFetching(true))

@@ -1,9 +1,13 @@
-const EDIT_ARR = 'EDIT_ARR/CountryCardsReducer'
-const EDIT_INPUT_VALUE = 'EDIT_INPUT_VALUE/CountryCardsReducer'
+import {apiCountry} from "../../API/apiCountry";
+
+const EDIT_ARR = 'EDIT_ARR/CountryCardsReducer';
+const EDIT_INPUT_VALUE = 'EDIT_INPUT_VALUE/CountryCardsReducer';
+const SET_COUNTRYS_FOR_CARD = 'SET_COUNTRYS_FOR_CARD/CountryCardsReducer';
+const EDIT_IS_FETCHING =  'EDIT_IS_FETCHING/CountryCardsReducer';
 
 const initialState = {
     countrysForCard: [
-        {
+/*        {
             id: 0,
             country: {
                 en:'Belarus',
@@ -129,26 +133,12 @@ const initialState = {
                 gr:'Paris'
             },
             img:'https://tripmydream.cc/travelhub/travel/blocks/20/5779/block_205779.jpg'
-        },
-/*
-        {
-            id:1,
-            country: {
-                en:'',
-                ru:'',
-                gr:'',
-            },
-            capital: {
-                en:'',
-                ru:'',
-                gr:''
-            },
-            img:''
-        }
-*/
+        },*/
+
     ],
     countryAfterInput: [],
     inputValue:'',
+    isFetching: false,
 }
 
 const CountryCardsReducer = (state = initialState, action) => {
@@ -158,7 +148,19 @@ const CountryCardsReducer = (state = initialState, action) => {
             return  {
                 ...state,
                 inputValue:action.value
+            }
+        }
+        case SET_COUNTRYS_FOR_CARD: {
+            return {
+                ...state,
+                countrysForCard:action.arr
+            }
 
+        }
+        case EDIT_IS_FETCHING: {
+            return {
+                ...state,
+                isFetching:action.bool
             }
         }
 
@@ -168,5 +170,24 @@ const CountryCardsReducer = (state = initialState, action) => {
 
 export const editArr = (value) => ({type:EDIT_ARR, value})
 export const editInputValue = (value) => ({type: EDIT_INPUT_VALUE, value})
+const setCountryForCard = (arr) => ({type: SET_COUNTRYS_FOR_CARD, arr})
+const IsFetching = (bool) => ({type: EDIT_IS_FETCHING, bool})
+
+export const SetCountryForCardThunk = (lang) => async (dispatch) => {
+    try {
+        dispatch(IsFetching(true))
+        let response = await apiCountry.ownCountryGet(lang)
+                if (response.status === 200) {
+                    dispatch(setCountryForCard(response.data))
+                }
+        dispatch(IsFetching(false))
+    } catch (err) {
+        dispatch(IsFetching(false))
+    }
+
+
+
+}
+
 
 export default CountryCardsReducer;

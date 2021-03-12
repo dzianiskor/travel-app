@@ -1,3 +1,8 @@
+import {apiCountry} from "../../API/apiCountry";
+
+const SET_COUNTRY_INFO = 'SET_COUNTRY_INFO/CountryPageReducer';
+const EDIT_IS_FETCHING = 'EDIT_IS_FETCHING/CountryPageReducer';
+
 const initialState = {
 
     allArr: [
@@ -1081,15 +1086,50 @@ const initialState = {
             ]
         },
 
-    ]
+    ],
+    countryInfo:[],
+    isFetching:true,
 
 }
 
 const CountryPageReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_COUNTRY_INFO: {
+            return {
+                ...state,
+                countryInfo:action.info
+            }
+        }
+        case EDIT_IS_FETCHING: {
+            return {
+                ...state,
+                isFetching:action.bool
+            }
+        }
 
         default: return state
     }
 }
+
+const setCountry = (info) => ({type: SET_COUNTRY_INFO, info})
+const IsFetching = (bool) => ({type: EDIT_IS_FETCHING, bool})
+
+export const SetOneCountryThunk = (id, lang) => async (dispatch) => {
+    try {
+        dispatch(IsFetching(true))
+        let response = await apiCountry.countryPage(id, lang)
+        if (response.status === 200) {
+            dispatch(setCountry(response.data))
+        }
+        dispatch(IsFetching(false))
+    } catch (err) {
+        dispatch(IsFetching(false))
+    }
+
+
+
+}
+
+
 
 export default CountryPageReducer;

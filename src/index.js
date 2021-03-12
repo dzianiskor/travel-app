@@ -1,22 +1,22 @@
 import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "./redux/redux";
+import s from './Components/OwnPage/OwnPage.module.css'
 
 import './i18n'
 import AppContainer from "./Containers/AppContainer";
 
 ReactDOM.render(
-    <BrowserRouter>
+    <HashRouter>
         <Provider store={store} >
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div className={s.preloader}>Loading...</div>}>
         <AppContainer />
             </Suspense>
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
   ,
   document.getElementById('root')
 );

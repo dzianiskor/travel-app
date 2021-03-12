@@ -7,24 +7,28 @@ import s from './Gallery.module.css'
 
 
 
-const Gallery = ({allArr, id, lang}) => {
+const Gallery = ({allArr}) => {
 
     const [indexdesc, setIndex] = useState(0)
 
     let dima = []
+    if (!allArr) {
+        return <div></div>
+    }
 
-    allArr[id].gallery.forEach(el => dima.push(el.desc))
+    allArr.forEach(el => dima.push(el.description))
 
     let photos = [];
-    allArr[id].gallery.forEach(el => photos.push({
+    allArr.forEach(el => photos.push({
         original: el.img,
         thumbnail: el.img,
     }))
 
+console.log('allArr', allArr)
 
 
 
-
+/*
     const images = [
         {
             original: 'https://picsum.photos/id/1018/1000/600/',
@@ -51,6 +55,8 @@ const Gallery = ({allArr, id, lang}) => {
 
         },
     ];
+*/
+
 
 
     return (
@@ -64,16 +70,13 @@ const Gallery = ({allArr, id, lang}) => {
                 <ul>
                     {dima.map((el, index ) => {
                         if (index === indexdesc) {
-                            return <li className={s.active} key={el.ru}>
-                                {lang === 'Русский' && el.ru}
-                                {lang === 'English' && el.eng}
-                                {lang === 'Deutsche' && el.gr}
+                            return <li className={s.active} key={el}>
+                                {el}
+
                             </li>
                         } else {
-                            return <li key={el.ru}>
-                                {lang === 'Русский' && el.ru}
-                                {lang === 'English' && el.eng}
-                                {lang === 'Deutsche' && el.gr}
+                            return <li key={el}>
+                                {el}
                             </li>
                         }
 

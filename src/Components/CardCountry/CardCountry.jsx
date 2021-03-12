@@ -9,15 +9,17 @@ const CardCountry = ({t, lang, country, capital, img, id}) => {
             <div className={s.card}>
                 <div className={s.country}><h2>{t("countryCard.name")}</h2></div>
                 <div className={s.country}><h2>
-                    {lang === 'Русский' && country.ru}
+                    {country}
+                    {/*{lang === 'Русский' && country.ru}
                     {lang === 'English' && country.en}
-                    {lang === 'Deutsche' && country.gr}
+                    {lang === 'Deutsche' && country.gr}*/}
 
                 </h2></div>
                 <div className={s.country}>{t("countryCard.capital")}:
-                    {lang === 'Русский' && capital.ru}
+                    {capital}
+{/*                    {lang === 'Русский' && capital.ru}
                     {lang === 'English' && capital.en}
-                    {lang === 'Deutsche' && capital.gr}
+                    {lang === 'Deutsche' && capital.gr}*/}
                 </div>
                 <img className={s.img}
                      src={img}
