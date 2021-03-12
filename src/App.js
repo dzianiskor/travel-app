@@ -14,10 +14,10 @@ import CountryPageContainer from "./Containers/CountryPageContainer";
 
 function App({lang}) {
 
-    const { t, i18n } = useTranslation(); // Для мультиязычности
+    const { t, i18n } = useTranslation();
 
 
-    const {token, login, logout, userId} = useAuth() // Баловавался с back-end лучше переделать
+    const {token, login, logout, userId} = useAuth()
     const isAuthenticated = !!token
 
 

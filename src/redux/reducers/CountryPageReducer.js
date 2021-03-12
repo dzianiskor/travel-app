@@ -843,7 +843,7 @@ const initialState = {
         },
         {
             id:7,
-            ISO:'ОКВ',
+            ISO:'OKB',
             video:'https://www.youtube.com/watch?v=f0PvMmTAUAQ',
             utc:11,
             countryISO:'DE',

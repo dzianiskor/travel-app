@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Gallery from "../Gallery/Gallery";
 import ReactPlayer from 'react-player';
 
@@ -43,13 +43,15 @@ const CountryPage = ({match, allArr, lang, t}) => {
             <WeatherContainer city={allArr[id].capital.ru} />
             <ConverterContainer />
             <div>
-                <Time utc={allArr[id].utc} />
+                <Time utc={allArr[id].utc} lang={lang} />
             </div>
             <Gallery id={id} allArr={allArr} lang={lang}  />
 
 
 
-            <ReactPlayer   url={allArr[id].video} />
+{/*            <ReactPlayer  url={allArr[id].video}
+
+            />*/}
 
 
 

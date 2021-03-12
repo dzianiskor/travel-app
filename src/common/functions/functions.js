@@ -50,7 +50,21 @@ export const SearchFunction = (lang, countrysForCard, inputValue) => {
 
 }
 
+export const MonthInData = (mo, lang, rus, eng, de) => {
+    let newMo
+    if (lang === 'Русский') {
+         newMo = rus
+    } else if (lang === 'English') {
+         newMo = eng
+    } else if (lang === 'Deutsche') {
+          newMo = de
+    }
 
+    return newMo
+
+
+
+}
 
 
 
