@@ -48,6 +48,10 @@ const setValue = (val) => ({type:SET_VALUE, val})
 const setValueEur = (val) => ({type:SET_VALUE_EUR, val})
 const setValueRub = (val) => ({type:SET_VALUE_RUB, val})
 
+
+
+
+
 export const setConverter = (you, out) => async (dispatch) => {
     try {
         dispatch(IsFetching(true))

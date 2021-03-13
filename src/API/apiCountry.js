@@ -12,3 +12,9 @@ export const apiCountry = {
         return instance.get(`countries/${id}?lang=${lang}`)
     }
 }
+
+export const apiLogin = {
+    login(data) {
+        return instance.post(`auth/login`, data)
+    }
+}

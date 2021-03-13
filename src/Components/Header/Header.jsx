@@ -3,11 +3,15 @@ import s from './Header.module.css'
 import { Input } from 'antd';
 import {editInputValue} from "../../redux/reducers/CountryCardsReducer";
 import {NavLink} from "react-router-dom";
+import {useAuth} from "../../hooks/auth.hook";
 
 
-const Header = ({lang, editLang, inputValue, i18n, editArr, location, editInputValue, t}) => {
-
-
+const Header = ({lang,
+                    isAuthenticated,
+                    editLang,
+                    inputValue,
+                    logout,
+                    i18n, editArr, location, editInputValue, IsSuccess, t}) => {
     const { Search } = Input;
     //const onSearch = value => console.log(value);
     return (
@@ -29,8 +33,24 @@ const Header = ({lang, editLang, inputValue, i18n, editArr, location, editInputV
                 }}
                         placeholder="input search text" allowClear  style={{ width: 200 }} />
             </div>}
-            {location.pathname !== '/' && <NavLink to={'/'}><div>{t("header.main")}</div></NavLink>}
-        </div>
+            <div>{location.pathname !== '/' && <NavLink to={'/'}><div>Главная</div></NavLink>}</div>
+{/*
+            <div>
+                {!isAuthenticated
+            && location.pathname !== '/register'
+            && <NavLink to={'/register'}>Регистрация</NavLink>}
+            </div>
+*/}
+            <div>
+                {!isAuthenticated
+            && location.pathname !== '/login'
+            && <NavLink to={'/login'}>Sign</NavLink>}
+            </div>
+            {!!isAuthenticated && <div onClick={() => {
+                IsSuccess(null)
+                logout()}}>logout</div>}
+
+            </div>
     );
 };
 

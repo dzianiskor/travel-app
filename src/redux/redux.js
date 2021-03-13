@@ -8,6 +8,7 @@ import CountryCardsReducer from "./reducers/CountryCardsReducer";
 import CountryPageReducer from "./reducers/CountryPageReducer";
 import WeatherReducer from "./reducers/WeatherReducer";
 import ConverterReducer from "./reducers/ConverterReducer";
+import AuthReducer from "./reducers/AuthReducer";
 
 
 
@@ -17,6 +18,7 @@ let reducers = combineReducers({
     WeatherReducer,
     ConverterReducer,
     CountryPageReducer,
+    AuthReducer,
 });
 
 const persistConfig = {

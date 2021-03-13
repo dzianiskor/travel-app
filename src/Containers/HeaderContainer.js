@@ -7,6 +7,7 @@ import Header from "../Components/Header/Header";
 import {editLang} from "../redux/reducers/LangReducer";
 import {editArr, editInputValue} from "../redux/reducers/CountryCardsReducer";
 import {withRouter} from "react-router-dom";
+import {IsSuccess} from "../redux/reducers/AuthReducer";
 
 const HeaderContainer = (props) => {
 
@@ -40,6 +41,7 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps, {
         editLang,
+        IsSuccess,
         editArr,
         editInputValue,
     }),

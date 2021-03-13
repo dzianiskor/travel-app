@@ -2,7 +2,7 @@ import {weatherApi} from "../../API/apiWeather";
 
 const SET_WEATHER = 'SET_WEATHER/WeatherReducer';
 const IS_FEATCHING = 'IS_FEATCHING/WeatherReducer';
-const IS_ERROR = 'IS_ERROR/WeatherReducer'
+const IS_ERROR = 'IS_ERROR/WeatherReducer';
 
 const initialState = {
     isFetching: null,

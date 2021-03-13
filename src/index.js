@@ -12,7 +12,7 @@ import AppContainer from "./Containers/AppContainer";
 ReactDOM.render(
     <HashRouter>
         <Provider store={store} >
-            <Suspense fallback={<div className={s.preloader}>Loading...</div>}>
+            <Suspense fallback={<div>Loading...</div>}>
         <AppContainer />
             </Suspense>
         </Provider>

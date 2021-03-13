@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Form, Input} from "antd";
-import {LockOutlined, UserOutlined} from "@ant-design/icons";
-import axios from "axios";
+import s from './LoginPage.module.css';
+import * as axios from 'axios';
+
+/*import {Button, Form, Input} from "antd";
+import {LockOutlined, UserOutlined} from "@ant-design/icons";*/
 
 
 
-const LoginPage = ({login}) => {
+/*const LoginPage = ({login}) => {
 
     const [form] = Form.useForm();
     const [, forceUpdate] = useState({});
@@ -14,15 +16,7 @@ const LoginPage = ({login}) => {
         forceUpdate({});
     }, []);
 
-    const onFinish = (values) => {
-        axios.post('/api/auth/login', values).then(res => {
-            login(res.data.token, res.data.userId)
-            console.log(res)
-        })
-       /* axios.post('/api/auth/register', values).then(res => {
-            console.log(res)
-        })*/
-    };
+
 
     return (
         <div>
@@ -69,6 +63,85 @@ const LoginPage = ({login}) => {
                     )}
                 </Form.Item>
             </Form>
+
+        </div>
+    );
+};*/
+
+import { Form, Input, Button } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import {apiLogin} from "../../API/apiCountry";
+import {useAuth} from "../../hooks/auth.hook";
+import {Redirect} from "react-router";
+import {NavLink} from "react-router-dom";
+
+const LoginPage = ({isFetching, LoginAuthThunk, isError,
+                       history,
+                       isSuccess, IsSuccess, isAuthenticated,
+                       ava, logout, userId,
+                       login}) => {
+
+    useEffect(() => {
+        if (!!isSuccess && isSuccess.status === 200) {
+            login(isSuccess.data.token, isSuccess.data.userId, isSuccess.data.avatar)
+        }
+    }, [isSuccess])
+    
+    if (!!isAuthenticated) {
+        history.push('/')
+    }
+
+    const onFinish = (values) => {
+        IsSuccess(null)
+        LoginAuthThunk(values)
+
+    };
+
+
+
+    return (
+        <div className={s.login}>
+            <div className={s.modal}>
+                <div className={s.wrapp}>
+                <h1>Вход</h1>
+                <Form
+                    name="normal_login"
+                    className="login-form"
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                >
+                    <Form.Item
+                        name="email"
+                        rules={[{ required: true, message: 'Please input your email!' }]}
+                    >
+                        <Input type={'email'} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+                    </Form.Item>
+                    <Form.Item
+                        name="password"
+                        rules={[{ required: true, message: 'Please input your Password!' }]}
+                    >
+                        <Input
+                            prefix={<LockOutlined className="site-form-item-icon" />}
+                            type="password"
+                            placeholder="Password"
+                        />
+                    </Form.Item>
+                    {!!isError && <div className={s.red}>Логин или пароль не верный</div>}
+
+                    <Form.Item>
+                        {!isFetching && <Button type="primary" htmlType="submit" className="login-form-button">
+                            Log in
+                        </Button>}
+                        {!!isFetching && <Button type="primary" loading className="login-form-button">
+                            Log in
+                        </Button>}
+                        Or <NavLink to={'/register'}>register now!</NavLink>
+                    </Form.Item>
+                </Form>
+                </div>
+
+
+            </div>
 
         </div>
     );
