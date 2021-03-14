@@ -7,7 +7,9 @@ const CardCountry = ({t, lang, country, capital, img, id}) => {
     return (
         <NavLink to={`/country/${id}`}>
             <div className={s.card}>
+{/*
                 <div className={s.country}><h2>{t("countryCard.name")}</h2></div>
+*/}
                 <div className={s.country}><h2>
                     {country}
                     {/*{lang === 'Русский' && country.ru}
@@ -15,7 +17,9 @@ const CardCountry = ({t, lang, country, capital, img, id}) => {
                     {lang === 'Deutsche' && country.gr}*/}
 
                 </h2></div>
-                <div className={s.country}>{t("countryCard.capital")}:
+
+                <div className={s.country}>{/*{t("countryCard.capital")}*/}
+
                     {capital}
 {/*                    {lang === 'Русский' && capital.ru}
                     {lang === 'English' && capital.en}

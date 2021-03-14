@@ -9,7 +9,6 @@ import PointLoader from "../../preloaders/PointLoader/PointLoader";
 
 const Weather = React.memo(({SetWeatherThunk, weather, city, isFetching, language}) => {
 
-    console.log('props', weather)
 
     useEffect(() => {
         SetWeatherThunk(city, language)

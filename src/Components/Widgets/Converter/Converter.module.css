@@ -1,6 +1,7 @@
 .converter {
+    margin-top: 20px;
     width: 150px;
-    height: 400px;
+    height: 100px;
     background-color: silver;
     border-radius: 20px;
 }

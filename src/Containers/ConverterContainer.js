@@ -32,6 +32,7 @@ class ConverterContainer extends useEffect.Component {
 const mapStateToProps = (state) => {
     return {
         lang: state.LangReducer.lang,
+        isFetching:state.ConverterReducer.isFetching,
         allArr: state.CountryPageReducer.allArr,
         valuteUSD:state.ConverterReducer.valuteUSD,
         valueEUR:state.ConverterReducer.valueEUR,
