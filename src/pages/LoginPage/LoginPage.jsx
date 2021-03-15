@@ -83,21 +83,23 @@ const LoginPage = ({isFetching, LoginAuthThunk, isError,
 
     useEffect(() => {
         if (!!isSuccess && isSuccess.status === 200) {
-            login(isSuccess.data.token, isSuccess.data.userId, isSuccess.data.avatar)
+            login(isSuccess.data.token, isSuccess.data.userId, isSuccess.data.avatar, isSuccess.data.name)
         }
     }, [isSuccess])
+
+    useEffect(() => {
+        if (!!isAuthenticated) {
+            history.push('/')
+        }
+    }, [isAuthenticated])
     
-    if (!!isAuthenticated) {
-        history.push('/')
-    }
+
 
     const onFinish = (values) => {
         IsSuccess(null)
         LoginAuthThunk(values)
 
     };
-
-
 
     return (
         <div className={s.login}>
@@ -118,7 +120,8 @@ const LoginPage = ({isFetching, LoginAuthThunk, isError,
                     </Form.Item>
                     <Form.Item
                         name="password"
-                        rules={[{ required: true, message: 'Please input your Password!' }]}
+                        rules={[{ required: true, message: 'Please input your Password!' },
+                            { min: 6, message: 'Password must be minimum 6 characters.' }]}
                     >
                         <Input
                             prefix={<LockOutlined className="site-form-item-icon" />}

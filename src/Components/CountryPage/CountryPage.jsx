@@ -15,12 +15,6 @@ const CountryPage = ({match, allArr, lang, t, countryInfo, isFetching}) => {
 
 
 
-
-
-    //let id = match.params.id;
-
-console.log('countryInfo', countryInfo)
-
     return (
         <div className={s.countrypage}>
             {!!isFetching && <CirklePreloader />}

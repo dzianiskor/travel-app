@@ -36,7 +36,7 @@ const AuthReducer = (state = initialState, action) => {
     }
 }
 
-const IsFetching = (bool) => ({type:EDIT_IS_FETCHING, bool})
+export const IsFetching = (bool) => ({type:EDIT_IS_FETCHING, bool})
 const IsError = (error) => ({type: IS_ERROR, error})
 export const IsSuccess = (bool) => ({type: IS_SUCCESS, bool})
 
@@ -48,7 +48,6 @@ export const LoginAuthThunk = (data) => async (dispatch) => {
         dispatch(IsError(false))
         let response = await apiLogin.login(data)
         if (response.status === 200) {
-
             dispatch(IsSuccess(response))
         }
         dispatch(IsFetching(false))

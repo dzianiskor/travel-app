@@ -16,5 +16,9 @@ export const apiCountry = {
 export const apiLogin = {
     login(data) {
         return instance.post(`auth/login`, data)
+    },
+    register(data) {
+        return instance.post(`auth/register`, data)
     }
 }
+

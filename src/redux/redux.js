@@ -9,6 +9,7 @@ import CountryPageReducer from "./reducers/CountryPageReducer";
 import WeatherReducer from "./reducers/WeatherReducer";
 import ConverterReducer from "./reducers/ConverterReducer";
 import AuthReducer from "./reducers/AuthReducer";
+import RegisterPage from "./reducers/RegisterReducer";
 
 
 
@@ -19,6 +20,7 @@ let reducers = combineReducers({
     ConverterReducer,
     CountryPageReducer,
     AuthReducer,
+    RegisterPage,
 });
 
 const persistConfig = {

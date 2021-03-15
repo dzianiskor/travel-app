@@ -1,29 +1,29 @@
 import React from 'react';
 import s from './CardCountry.module.css'
 import {NavLink} from "react-router-dom";
+import {languageFunc} from "../../common/functions/functions";
 
 const CardCountry = ({t, lang, country, capital, img, id}) => {
 
     return (
         <NavLink to={`/country/${id}`}>
             <div className={s.card}>
-{/*
-                <div className={s.country}><h2>{t("countryCard.name")}</h2></div>
-*/}
+                <div className={s.country}><h2>{languageFunc(lang,
+                    'Страна',
+                    'The country',
+                    'Das Land ')}
+                </h2></div>
                 <div className={s.country}><h2>
-                    {country}
-                    {/*{lang === 'Русский' && country.ru}
-                    {lang === 'English' && country.en}
-                    {lang === 'Deutsche' && country.gr}*/}
 
+                    {country}
                 </h2></div>
 
-                <div className={s.country}>{/*{t("countryCard.capital")}*/}
-
+                <div className={s.country}>
+                    <span>{languageFunc(lang,
+                        'Столица',
+                        'Capital',
+                        'Hauptstadt')}:</span>
                     {capital}
-{/*                    {lang === 'Русский' && capital.ru}
-                    {lang === 'English' && capital.en}
-                    {lang === 'Deutsche' && capital.gr}*/}
                 </div>
                 <img className={s.img}
                      src={img}

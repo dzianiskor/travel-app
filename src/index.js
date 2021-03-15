@@ -4,7 +4,6 @@ import './index.css';
 import {HashRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "./redux/redux";
-import s from './Components/OwnPage/OwnPage.module.css'
 
 import './i18n'
 import AppContainer from "./Containers/AppContainer";
@@ -13,7 +12,7 @@ ReactDOM.render(
     <HashRouter>
         <Provider store={store} >
             <Suspense fallback={<div>Loading...</div>}>
-        <AppContainer />
+        <AppContainer  />
             </Suspense>
         </Provider>
     </HashRouter>

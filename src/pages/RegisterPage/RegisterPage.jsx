@@ -4,21 +4,26 @@ import * as axios from 'axios';
 import 'antd/dist/antd.css';
 
 import { Form, Input, Button, Upload } from 'antd';
-import { UserOutlined, LockOutlined, UploadOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, UploadOutlined, MailOutlined } from '@ant-design/icons';
 import s from "../LoginPage/LoginPage.module.css";
 import {NavLink} from "react-router-dom";
+import {apiLogin} from "../../API/apiCountry";
+import {IsFetching} from "../../redux/reducers/AuthReducer";
 
-const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, history}) => {
+const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, history, isFetching}) => {
 
     useEffect(() => {
         if (!!isSuccess && isSuccess.status === 200) {
-            login(isSuccess.data.token, isSuccess.data.userId, isSuccess.data.avatar)
+            login(isSuccess.data.token, isSuccess.data.userId, isSuccess.data.avatar, isSuccess.data.name)
         }
     }, [isSuccess])
+    useEffect(() => {
+        if (!!isAuthenticated) {
+            history.push('/')
+        }
+    }, [isAuthenticated, history])
 
-    if (!!isAuthenticated) {
-        history.push('/')
-    }
+
 /*
     const normFile = (e) => {
         console.log('Upload event:', e);
@@ -31,40 +36,45 @@ const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, histor
     };
 */
 
+    const [error, setError] = useState(false)
 
     const onFinish = (values) => {
         if (!!values.upload) {
             values.upload = file;
-            alert('Доработать загрузку фото')
-     /*       axios.post("https://dzianiskor-travel-app-server.herokuapp.com/api/auth/register", {
-                email:values.email,
-                password:values.password
-            }).then(res => {
-                axios.post("https://dzianiskor-travel-app-server.herokuapp.com/api/auth/login", {email:values.email,
-                    password:values.password}).then(r => {
-                    axios.post("https://dzianiskor-travel-app-server.herokuapp.com/api/uploads/avatar", file, {
-                        headers: {'Authorization': `Bear ${r.data.token}` }
-                })}).then(() => {
-                    LoginAuthThunk({
-                        email:values.email,
-                        password:values.password
+            setError(false)
+            IsFetching(true)
+            apiLogin.register({email:values.email,name:values.name, password:values.password}).then(reg => {
+                if (reg.status === 201) {
+                    apiLogin.login({email:values.email, password:values.password}).then(resToken => {
+                        axios.post("https://dzianiskor-travel-app-server.herokuapp.com/api/uploads/avatar", file, {
+                            headers: {'Authorization': `Bearer ${resToken.data.token}`}
+                        }).then(() =>{
+                            LoginAuthThunk({email:values.email, password:values.password})
+                            IsFetching(false)
+                        })
                     })
-                })
+                }
+            }).catch(() => alert('aaa'))
 
 
-
-            })*/
         } else {
             delete values.upload;
-            axios.post("https://dzianiskor-travel-app-server.herokuapp.com/api/auth/register", values).then(res => {
+            setError(false)
+            IsFetching(true)
+            apiLogin.register(values).then(res => {
                 if (res.status === 201) {
                     LoginAuthThunk(values)
                 }
-            })
+            }).then(r => {
+                IsFetching(false)
+            }).catch(e => setError(true))
+/*            axios.post("https://dzianiskor-travel-app-server.herokuapp.com/api/auth/register", values).then(res => {
+                if (res.status === 201) {
+                    LoginAuthThunk(values)
+                }
+            })*/
 
         }
-        console.log('values', values)
-
     };
 
     const [file, setFile] = useState(null)
@@ -77,8 +87,6 @@ const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, histor
 
     return (
         <div className={s.login}>
-            <input type="file" onChange={prepareFileToUpload}/>
-        <button onClick={()=>console.log('file', file)}>hhh</button>
             <div className={s.modal}>
                 <div className={s.wrapp}>
                     <h1>Регистрация</h1>
@@ -92,11 +100,25 @@ const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, histor
                             name="email"
                             rules={[{ required: true, message: 'Please input your email!' }]}
                         >
-                            <Input type={'email'} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+
+                            <Input type={'email'} prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email" />
+                        </Form.Item>
+                        <Form.Item
+                            name="name"
+                            rules={[{ required: true, message: 'Please input your name!' }]}
+                        >
+                            <Input
+                                prefix={<UserOutlined className="site-form-item-icon" />}
+                                type="name"
+                                placeholder="Your name"
+                            />
                         </Form.Item>
                         <Form.Item
                             name="password"
-                            rules={[{ required: true, message: 'Please input your Password!' }]}
+                            rules={[
+                                { required: true, message: 'Please input your Password!' },
+                                { min: 6, message: 'Password must be minimum 6 characters.' }
+                                ]}
                         >
                             <Input
                                 prefix={<LockOutlined className="site-form-item-icon" />}
@@ -104,9 +126,8 @@ const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, histor
                                 placeholder="Password"
                             />
                         </Form.Item>
-{/*
-                        {!!isError && <div className={s.red}>Логин или пароль не верный</div>}
-*/}
+
+
                         <Form.Item
                             name="upload"
                             label="Upload"
@@ -120,15 +141,14 @@ const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, histor
                             </Upload>
                         </Form.Item>
                         <Form.Item>
-                            {/*{!isFetching && <Button type="primary" htmlType="submit" className="login-form-button">
-                                Log in
-                            </Button>}*/}
-                            {/*{!!isFetching && <Button type="primary" loading className="login-form-button">
-                                Log in
-                            </Button>}*/}
-                            <Button type="primary" htmlType="submit" className="login-form-button">
+
+                            {!!error && <div className={s.red}>Почта занаята</div>}
+                            {!!isFetching && <Button type="primary" loading className="login-form-button">
                                 Sign Up
-                            </Button>
+                            </Button>}
+                            {!isFetching && <Button type="primary" htmlType="submit" className="login-form-button">
+                                Sign Up
+                            </Button>}
                              <NavLink to={'/login'}>Уже есть аккаунт?</NavLink>
                         </Form.Item>
                     </Form>

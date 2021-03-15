@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route} from 'react-router-dom'
-import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
+
 import {useAuth} from "./hooks/auth.hook";
 
 import HeaderContainer from "./Containers/HeaderContainer";
@@ -11,6 +10,7 @@ import OwnPageContainer from "./Containers/OwnPageContainer";
 import CountryPageContainer from "./Containers/CountryPageContainer";
 import LoginPageContainer from "./Containers/LoginPageContainer";
 import RegisterPageContainer from "./Containers/RegisterPageContainer";
+import s from './App.module.css'
 
 
 
@@ -18,16 +18,24 @@ function App({lang}) {
 
     const { t, i18n } = useTranslation();
 
-    const {token, login, logout, userId, ava} = useAuth()
+    const {token, login, logout, userId, ava, name} = useAuth()
     const isAuthenticated = !!token
 
-    console.log('ava', ava)
+    useEffect(() => {
+
+    }, [])
+
 
 
 
     return (
-        <div className="App">
-            <HeaderContainer t={t} i18n={i18n} lang={lang} logout={logout}  isAuthenticated={isAuthenticated} />
+        <div className={s.app}  >
+            <HeaderContainer t={t}
+                             i18n={i18n}
+                             lang={lang}
+                             name={name}
+                             logout={logout}
+                             isAuthenticated={isAuthenticated} />
             <Route path={'/'} exact render={() => <OwnPageContainer ava={ava} lang={lang} t={t} />} />
             <Route path={'/country/:id'}  render={() => <CountryPageContainer t={t} />} />
             <Route path={'/register'} render={() => <RegisterPageContainer isAuthenticated={isAuthenticated}

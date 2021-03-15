@@ -3,7 +3,7 @@ import OwnPage from "../Components/OwnPage/OwnPage";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {SearchFunction} from "../common/functions/functions";
-import {SetCountryForCardThunk} from "../redux/reducers/CountryCardsReducer";
+import {editInputValue, SetCountryForCardThunk} from "../redux/reducers/CountryCardsReducer";
 
 
 const OwnPageContainer = (props) => {
@@ -42,5 +42,6 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps, {
         SetCountryForCardThunk,
+        editInputValue,
     })
 ) (OwnPageContainer);
