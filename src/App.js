@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Route} from 'react-router-dom'
 
 import {useAuth} from "./hooks/auth.hook";
@@ -10,6 +10,7 @@ import OwnPageContainer from "./Containers/OwnPageContainer";
 import CountryPageContainer from "./Containers/CountryPageContainer";
 import LoginPageContainer from "./Containers/LoginPageContainer";
 import RegisterPageContainer from "./Containers/RegisterPageContainer";
+import Footer from './Components/Footer/Footer'
 import s from './App.module.css'
 
 
@@ -21,9 +22,8 @@ function App({lang}) {
     const {token, login, logout, userId, ava, name} = useAuth()
     const isAuthenticated = !!token
 
-    useEffect(() => {
 
-    }, [])
+
 
 
 
@@ -37,7 +37,7 @@ function App({lang}) {
                              logout={logout}
                              isAuthenticated={isAuthenticated} />
             <Route path={'/'} exact render={() => <OwnPageContainer ava={ava} lang={lang} t={t} />} />
-            <Route path={'/country/:id'}  render={() => <CountryPageContainer t={t} />} />
+            <Route path={'/country/:id'}  render={() => <CountryPageContainer token={token} />} />
             <Route path={'/register'} render={() => <RegisterPageContainer isAuthenticated={isAuthenticated}
                                                                            login={login}/>}/>
             <Route path={'/login'} render={() => <LoginPageContainer isAuthenticated={isAuthenticated}
@@ -45,6 +45,7 @@ function App({lang}) {
                                                                      ava={ava}
                                                                      userId={userId}
                                                                      login={login}/>}/>
+            <Footer />
         </div>
     );
 }

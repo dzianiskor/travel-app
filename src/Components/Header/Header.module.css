@@ -11,12 +11,52 @@
     background-color: burlywood;
 }
 
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
 .unvisable {
     background-color: #fafafa;
 }
+
+
 
 .selected {
     position:absolute;
     z-index: 99999;
     right: 40px;
+}
+
+.inp {
+    position: absolute;
+    top:13px;
+    left:100px;
+}
+
+
+
+@media (max-width: 520px) {
+   .logo {
+       font-size: 0.75em;
+       top:20px;
+       left:10px;
+   }
+
+    .selected {
+        left:10px;
+    }
+
+    .selected {
+        left:190px;
+    }
+
+    .inp {
+        left: 60px;
+    }
 }

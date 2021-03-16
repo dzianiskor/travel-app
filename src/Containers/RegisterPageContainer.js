@@ -18,6 +18,7 @@ const mapStateToProps = (state) => {
         isFetching:state.AuthReducer.isFetching,
         isError:state.AuthReducer.isError,
         isSuccess:state.AuthReducer.isSuccess,
+        lang:state.LangReducer.lang,
     }
 };
 

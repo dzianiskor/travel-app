@@ -1,24 +1,29 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import s from './Converter.module.css'
 import PointLoader from "../../preloaders/PointLoader/PointLoader";
+import {languageFunc} from "../../../common/functions/functions";
 
 
 
 
 
-const Converter = ({match, youIso, valuteUSD, allArr, valueEUR, valueRUB, isFetching}) => {
+const Converter = ({ youIso, valuteUSD, valueEUR, valueRUB, isFetching, lang}) => {
 
 
 
     return (
-        <div className={s.converter}>
+        <article className={s.converter}>
             {!!isFetching && <PointLoader />}
             {!isFetching && <>
+                <h4>{languageFunc(lang,
+                    'Курс в стране',
+                    'Course in the country',
+                    'Kurs auf dem Land')}</h4>
                 <div>1 {youIso} = {valuteUSD} USD </div>
                 <div>1 {youIso} = {valueEUR} EUR </div>
                 <div>1 {youIso} = {valueRUB} RUB </div>
             </>}
-        </div>
+        </article>
     );
 };
 

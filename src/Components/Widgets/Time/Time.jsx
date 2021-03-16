@@ -1,5 +1,7 @@
 import React from 'react';
-import {MonthInData} from "../../../common/functions/functions";
+
+import s from './Time.module.css';
+import {languageFunc, MonthInData} from "../../../common/functions/functions";
 
 
 class Time extends React.Component {
@@ -97,10 +99,6 @@ componentDidMount() {
             day = 1;
             y++;
         }
-
-        //let hrs = d.getUTCHours() + this.props.utc;
-
-
         if (hrs < 10) {
             hrs = '0' + Number(d.getUTCHours() + this.props.utc);
         } else {
@@ -127,7 +125,8 @@ componentDidMount() {
         }
 
 
-        return ` ${mo},${day},${y}  ${hrs}:${mins}:${secs}  `;
+        return ` ${mo},${day},${y}
+         ${hrs}:${mins}:${secs}  `;
 
     }
 
@@ -137,12 +136,14 @@ componentDidMount() {
         });
     }
     render() {
-        const {lang} = this.props
         return (
-            <div>
-                <h1>{this.state.time}</h1>
-                {lang}
-            </div>
+            <article className={s.time}>
+                <h4>{languageFunc(this.props.lang,
+                    'Дата в столице',
+                    'Date in the capital',
+                    'Datum in der Hauptstadt')}</h4>
+                <h3>{this.state.time}</h3>
+            </article>
         );
     }
 }

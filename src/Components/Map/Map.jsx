@@ -1,5 +1,9 @@
-import { YMaps, Map, Placemark } from 'react-yandex-maps';
+import { YMaps, Map, Placemark, Panorama } from 'react-yandex-maps';
+
+import s from './Mappp.module.css'
+
 import React from 'react';
+import {languageFunc} from "../../common/functions/functions";
 
 
 
@@ -29,7 +33,6 @@ const Mappp = ({country, lang, coordCountry, zoom, coordCapital}) => {
     const mapRef = React.createRef(null);
 
     const getRegions = ymaps => {
-        console.log('ymaps', ymaps)
         if (mapRef && mapRef.current) {
             let objectManager = new ymaps.ObjectManager();
             ymaps.borders
@@ -96,14 +99,18 @@ const Mappp = ({country, lang, coordCountry, zoom, coordCapital}) => {
 
 
 
-    console.log()
-
     return (
-            <div>
+            <div  className={s.fr}>
+                <h1 className={s.center}>{languageFunc(lang,
+                    'Карта',
+                    'Map',
+                    'Karte')}</h1>
                 <YMaps key={language} query={{
                     lang: language
                 }}>
                     <Map
+                        width={'60%'}
+                        height={'300px'}
                         instanceRef={mapRef}
                         state={mapState}
                         onLoad={ymaps => getRegions(ymaps)}

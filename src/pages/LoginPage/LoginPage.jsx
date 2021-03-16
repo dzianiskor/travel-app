@@ -1,83 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import s from './LoginPage.module.css';
-import * as axios from 'axios';
-
-/*import {Button, Form, Input} from "antd";
-import {LockOutlined, UserOutlined} from "@ant-design/icons";*/
 
 
 
-/*const LoginPage = ({login}) => {
 
-    const [form] = Form.useForm();
-    const [, forceUpdate] = useState({});
-
-    useEffect(() => {
-        forceUpdate({});
-    }, []);
-
-
-
-    return (
-        <div>
-            <h1>Login Page</h1>
-            <Form form={form} name="horizontal_login" layout="inline" onFinish={onFinish}>
-                <Form.Item
-                    name="email"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your username!',
-                        },
-                    ]}
-                >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
-                </Form.Item>
-                <Form.Item
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your password!',
-                        },
-                    ]}
-                >
-                    <Input
-                        prefix={<LockOutlined className="site-form-item-icon" />}
-                        type="password"
-                        placeholder="Password"
-                    />
-                </Form.Item>
-                <Form.Item shouldUpdate={true}>
-                    {() => (
-                        <Button
-                            type="primary"
-                            htmlType="submit"
-                            disabled={
-                                !form.isFieldsTouched(true) ||
-                                !!form.getFieldsError().filter(({ errors }) => errors.length).length
-                            }
-                        >
-                            Ввойти
-                        </Button>
-                    )}
-                </Form.Item>
-            </Form>
-
-        </div>
-    );
-};*/
 
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import {apiLogin} from "../../API/apiCountry";
-import {useAuth} from "../../hooks/auth.hook";
-import {Redirect} from "react-router";
+
 import {NavLink} from "react-router-dom";
+import {languageFunc} from "../../common/functions/functions";
 
 const LoginPage = ({isFetching, LoginAuthThunk, isError,
                        history,
                        isSuccess, IsSuccess, isAuthenticated,
+                       lang,
                        ava, logout, userId,
                        login}) => {
 
@@ -105,7 +42,10 @@ const LoginPage = ({isFetching, LoginAuthThunk, isError,
         <div className={s.login}>
             <div className={s.modal}>
                 <div className={s.wrapp}>
-                <h1>Вход</h1>
+                <h1>{languageFunc(lang,
+                    'Вход',
+                    'Sign in',
+                    'Einloggen')}</h1>
                 <Form
                     name="normal_login"
                     className="login-form"
@@ -114,31 +54,63 @@ const LoginPage = ({isFetching, LoginAuthThunk, isError,
                 >
                     <Form.Item
                         name="email"
-                        rules={[{ required: true, message: 'Please input your email!' }]}
+                        rules={[{ required: true, message:languageFunc(lang,
+                                'Пожалуйста, введите свой адрес электронной почты! ',
+                                'Please input your email!',
+                                'Bitte geben Sie Ihre E-Mail ein!') }]}
                     >
-                        <Input type={'email'} prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+                        <Input type={'email'} prefix={<UserOutlined className="site-form-item-icon" />}
+                               placeholder={languageFunc(lang,
+                        'Почта',
+                        'Email',
+                        'Email')} />
                     </Form.Item>
+
                     <Form.Item
                         name="password"
-                        rules={[{ required: true, message: 'Please input your Password!' },
-                            { min: 6, message: 'Password must be minimum 6 characters.' }]}
+                        rules={[{ required: true, message:  languageFunc(lang,
+                                'Пожалуйста введите ваш пароль!',
+                                'Please input your Password!',
+                                'Bitte geben Sie Ihr Passwort ein!') },
+                            { min: 6, message: languageFunc(lang,
+                                    'Пароль должен состоять минимум из 6 символов! ',
+                                    'Password must be minimum 6 characters!',
+                                    'Das Passwort muss aus mindestens 6 Zeichen bestehen!')}]}
                     >
                         <Input
                             prefix={<LockOutlined className="site-form-item-icon" />}
                             type="password"
-                            placeholder="Password"
+                            placeholder={languageFunc(lang,
+                                'Пароль',
+                                'Password',
+                                'Passwort')}
                         />
                     </Form.Item>
-                    {!!isError && <div className={s.red}>Логин или пароль не верный</div>}
+                    {!!isError && <div className={s.red}> {languageFunc(lang,
+                        'Логин или пароль не верный',
+                        'Login or password is not correct',
+                        'Login oder Passwort ist nicht korrekt ')}</div>}
 
                     <Form.Item>
                         {!isFetching && <Button type="primary" htmlType="submit" className="login-form-button">
-                            Log in
+                            {languageFunc(lang,
+                            'Войти',
+                            'Sign in',
+                            'Anmelden')}
                         </Button>}
                         {!!isFetching && <Button type="primary" loading className="login-form-button">
-                            Log in
+                            {languageFunc(lang,
+                                'Войти',
+                                'Sign in',
+                                'Einloggen')}
                         </Button>}
-                        Or <NavLink to={'/register'}>register now!</NavLink>
+                        {languageFunc(lang,
+                            'Или',
+                            'Or',
+                            'Oder')} <NavLink to={'/register'}>{languageFunc(lang,
+                        'зарегистрироваться сейчас',
+                        'register now!',
+                        'jetzt registrieren! ')}</NavLink>
                     </Form.Item>
                 </Form>
                 </div>

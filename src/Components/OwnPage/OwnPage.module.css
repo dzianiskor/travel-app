@@ -37,3 +37,14 @@
     align-items: center;
     font-size: 50px;
 }
+
+@media (max-width: 520px) {
+    .headerSearch h1 {
+        font-size: 1.25em;
+        color: #fff;
+        text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    }
+    .input {
+        width: 300px;
+    }
+}

@@ -1,8 +1,11 @@
 .gall {
+    /*
     width:500px;
+    */
 }
 .h1 {
-    color: red;
+    margin-top: 25px;
+    text-align: center;
 }
 
 .dima {
@@ -12,4 +15,7 @@
 
 .active {
     color: blue;
+}
+.ul li {
+    padding: 5px;
 }

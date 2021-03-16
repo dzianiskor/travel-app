@@ -1,10 +1,59 @@
 .countrypage {
     padding-top: 60px;
-    height: 5000px;
     background-color: #dddd;
 }
 
+
+
 .imgCountry {
-    height: 200px;
+    height:220px;
+    width: 280px;
+    border-radius: 20px;
 }
 
+.pagef {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    display: flex;
+    width: 90vw;
+}
+
+.descr h1{
+    text-align: center;
+}
+
+.descr {
+    max-width: 900px;
+    margin-left: 20px;
+}
+
+.centerfl {
+    display: flex;
+    justify-content: center;
+}
+
+.widgets {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px 0 0;
+    font-size: 1.5em;
+}
+
+.widgets article {
+    margin: 20px 50px;
+}
+
+.center {
+    text-align: center;
+}
+
+
+
+.bor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

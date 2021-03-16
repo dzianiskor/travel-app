@@ -10,36 +10,55 @@ import Mappp from "../Map/Map";
 
 import Time from "../Widgets/Time/Time";
 import CirklePreloader from "../preloaders/CirklePreloader/CirklePreloader";
+import {languageFunc} from "../../common/functions/functions";
 
-const CountryPage = ({match, allArr, lang, t, countryInfo, isFetching}) => {
-
+const CountryPage = ({ lang, countryInfo, isFetching, id, token}) => {
 
 
     return (
         <div className={s.countrypage}>
             {!!isFetching && <CirklePreloader />}
             {!isFetching && <>
-                <h1>{countryInfo.name}</h1>
-
-                <img className={s.imgCountry} src={countryInfo.img} alt={'IMG_COUNTRY'}/>
-                <div>{t("countryCard.capital")}: {countryInfo.capital}</div>
-                <div>
-                    <p>
-                        {countryInfo.description}
-                    </p>
+                <h1 className={s.center}>{countryInfo.name}</h1>
+                <div className={s.centerfl}>
+                    <div className={s.pagef}>
+                        <img className={s.imgCountry} src={countryInfo.img} alt={'IMG_COUNTRY'}/>
+                        <div>
+                            <div className={s.descr}><h1>{languageFunc(lang,
+                                'Описание',
+                                'Sights',
+                                'Sehenswürdigkeiten')}</h1>
+                                <p>{countryInfo.description}</p>
+                                <p>{languageFunc(lang,
+                                    'Столица',
+                                    'Capital',
+                                    'Hauptstadt')}:
+                                    {countryInfo.capital}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <WeatherContainer city={countryInfo.capital} />
-                <ConverterContainer youIso={countryInfo.iso}/>
-                <div>
-                    <Time utc={countryInfo.utc} lang={lang} />
-                </div>
-                <Gallery allArr={countryInfo.galleries} lang={lang}  />
-
+                    <div className={s.widgets}>
+                        <WeatherContainer city={countryInfo.capital} />
+                        <ConverterContainer youIso={countryInfo.iso}/>
+                        <Time utc={countryInfo.utc} lang={lang} />
+                    </div>
                 <div   className={s.bor}>
+                    <h1>{languageFunc(lang,
+                        'Видео о стране',
+                        'Country video',
+                        'Ländervideo')}</h1>
                     <ReactPlayer   controls={true}  url={countryInfo.video}
 
                     />
                 </div>
+
+
+
+                <Gallery countryInfo={countryInfo} id={id} token={token} allArr={countryInfo.galleries} lang={lang}  />
+
+
                 <Mappp country={countryInfo.countryIso}
                        lang={lang}
                        zoom={countryInfo.zoom}
@@ -47,49 +66,6 @@ const CountryPage = ({match, allArr, lang, t, countryInfo, isFetching}) => {
                        coordCountry={countryInfo.coordCountry} />
 
             </>}
-            {/*<h1>
-                {lang === 'Русский' && allArr[id].nameCountry.ru}
-                {lang === 'English' && allArr[id].nameCountry.eng}
-                {lang === 'Deutsche' && allArr[id].nameCountry.gr}
-            </h1>
-            <img className={s.imgCountry} src={allArr[id].imgCountry} alt={'IMG_COUNTRY'}/>
-            <div>{t("countryCard.capital")}: <>
-                {lang === 'Русский' && allArr[id].capital.ru}
-                {lang === 'English' && allArr[id].capital.eng}
-                {lang === 'Deutsche' && allArr[id].capital.gr}
-            </>></div>
-            <div>
-                <p>{lang === 'Русский' && allArr[id].descriptionAboutCountry.ru}
-                    {lang === 'English' && allArr[id].descriptionAboutCountry.eng}
-                    {lang === 'Deutsche' && allArr[id].descriptionAboutCountry.gr}</p>
-            </div>
-
-            <WeatherContainer city={allArr[id].capital.ru} />
-            <ConverterContainer />
-            <div>
-                <Time utc={allArr[id].utc} lang={lang} />
-            </div>
-            <Gallery id={id} allArr={allArr} lang={lang}  />
-
-
-<div   className={s.bor}>
-    <ReactPlayer   controls={true}  url={allArr[id].video}
-
-    />
-</div>
-
-
-
-
-            <Mappp country={allArr[id].countryISO}
-                   lang={lang}
-                   zoom={allArr[id].zoom}
-                   coordCapital={allArr[id].coordCapital}
-                   coordCountry={allArr[id].coordCountry} />
-
-
-
-*/}
         </div>
     );
 };

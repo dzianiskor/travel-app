@@ -42,14 +42,8 @@ const Header = ({lang,
         <div className={cn(s.header,
             {[s.visable]:!!visable && location.pathname === '/'},
             {[s.unvisable]: !visable && location.pathname === '/' })}>
-{/*            <select value={lang} onChange={(e) => {
-                editLang(e.target.value)
+            <div className="nav-left"><NavLink className={s.logo} to={'/'}>Travel</NavLink></div>
 
-            }}>
-                <option>Русский</option>
-                <option>English</option>
-                <option>Deutsche</option>
-            </select>*/}
             <div>{name}</div>
             <div className={s.selected}>
             <Select defaultValue={lang} style={{ width: 60 }} onChange={handleChange}>
@@ -61,8 +55,11 @@ const Header = ({lang,
 
 
 
-            {location.pathname === '/' && <div>
-                { !!visable && <Search value={inputValue}
+            {location.pathname === '/' && <div  >
+                { !!visable && <Search
+                    style={{ width: 120 }}
+                    className={s.inp}
+                    value={inputValue}
                         autoFocus={true}
                         onSearch={onSearch}
                         onChange={(e) => {
@@ -72,9 +69,10 @@ const Header = ({lang,
                         placeholder={languageFunc(lang,
                             'Введите город или страну',
                             'Enter city or country ',
-                            'Stadt oder Land eingeben ')} allowClear  style={{ width: 200 }} />}
+                            'Stadt oder Land eingeben ')}
+
+                    allowClear   />}
             </div>}
-            <div>{location.pathname !== '/' && <NavLink to={'/'}><div>Главная</div></NavLink>}</div>
             <div>
                 {!isAuthenticated
             && location.pathname !== '/login'

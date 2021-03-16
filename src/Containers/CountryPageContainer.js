@@ -27,7 +27,7 @@ const CountryPageContainer = (props) => {
     }, [language]);
 
     return (
-        <CountryPage {...props} />
+        <CountryPage id={props.match.params.id} {...props} />
     );
 };
 

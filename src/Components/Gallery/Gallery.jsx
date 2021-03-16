@@ -3,13 +3,23 @@ import ImageGallery from 'react-image-gallery';
 
 
 
+
 import s from './Gallery.module.css'
+import {languageFunc} from "../../common/functions/functions";
+import Rater from "../../Containers/RateContainer";
+import Modal from "../Modal/Modal";
 
 
 
-const Gallery = ({allArr}) => {
+const Gallery = ({allArr, lang, id, token, countryInfo}) => {
+
+    const [modal, setModal] = useState(false)
+
+    //console.log('countryInfo',countryInfo.galleries)
 
     const [indexdesc, setIndex] = useState(0)
+    const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
+
 
     let dima = []
     if (!allArr) {
@@ -24,7 +34,6 @@ const Gallery = ({allArr}) => {
         thumbnail: el.img,
     }))
 
-console.log('allArr', allArr)
 
 
 
@@ -58,20 +67,34 @@ console.log('allArr', allArr)
 */
 
 
-
     return (
         <div>
-            <h1 className={s.h1}>Галерея</h1>
+            <h1 className={s.h1}>{languageFunc(lang,
+                'Достопримичательности',
+                'Description',
+                'Beschreibung')}</h1>
             <div className={s.gall}>
                 <ImageGallery thumbnailClass={s.dima}  onSlide={(currentIndex) => setIndex(currentIndex)} items={photos} />
 
             </div>
             <div>
-                <ul>
+                <ul className={s.ul}>
                     {dima.map((el, index ) => {
                         if (index === indexdesc) {
                             return <li className={s.active} key={el}>
                                 {el}
+                                <div>
+                                    <Rater galleryId={countryInfo.galleries[index]._id}
+                                           token={token} id={id} />
+                                    {!!modal && <Modal setModal={setModal} inf={countryInfo.galleries[index]} />}
+
+                                    <div onClick={() => {
+                                        setModal(true)
+                                               console.log('проголосовавшиеся',
+                                                   countryInfo.galleries[index]
+                                               )
+                                           }}>Посмотреть проголосовавших</div>
+                                </div>
 
                             </li>
                         } else {
@@ -84,6 +107,7 @@ console.log('allArr', allArr)
                         )}
                 </ul>
             </div>
+
         </div>
     );
 };

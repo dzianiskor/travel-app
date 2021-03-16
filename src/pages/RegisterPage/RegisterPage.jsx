@@ -9,8 +9,9 @@ import s from "../LoginPage/LoginPage.module.css";
 import {NavLink} from "react-router-dom";
 import {apiLogin} from "../../API/apiCountry";
 import {IsFetching} from "../../redux/reducers/AuthReducer";
+import {languageFunc} from "../../common/functions/functions";
 
-const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, history, isFetching}) => {
+const RegisterPage = ({LoginAuthThunk, lang, isSuccess, login, isAuthenticated, history, isFetching}) => {
 
     useEffect(() => {
         if (!!isSuccess && isSuccess.status === 200) {
@@ -22,19 +23,6 @@ const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, histor
             history.push('/')
         }
     }, [isAuthenticated, history])
-
-
-/*
-    const normFile = (e) => {
-        console.log('Upload event:', e);
-
-        if (Array.isArray(e)) {
-            return e;
-        }
-
-        return e && e.fileList;
-    };
-*/
 
     const [error, setError] = useState(false)
 
@@ -89,7 +77,10 @@ const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, histor
         <div className={s.login}>
             <div className={s.modal}>
                 <div className={s.wrapp}>
-                    <h1>Регистрация</h1>
+                    <h1>{languageFunc(lang,
+                        'Регистрация',
+                        'Sign up',
+                        'Anmelden')}</h1>
                     <Form
                         name="normal_login"
                         className="login-form"
@@ -98,58 +89,101 @@ const RegisterPage = ({LoginAuthThunk, isSuccess, login, isAuthenticated, histor
                     >
                         <Form.Item
                             name="email"
-                            rules={[{ required: true, message: 'Please input your email!' }]}
-                        >
+                            rules={[{ required: true, message: languageFunc(lang,
+                                    'Пожалуйста, введите свой адрес электронной почты!',
+                                    'Please input your email!',
+                                    'Bitte geben Sie Ihre E-Mail ein!')}]}>
 
-                            <Input type={'email'} prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email" />
+                            <Input type={'email'}
+                                   prefix={<MailOutlined className="site-form-item-icon" />}
+                                   placeholder={languageFunc(lang,
+                                       'Почта',
+                                       'Email!',
+                                       'Email')} />
                         </Form.Item>
                         <Form.Item
                             name="name"
-                            rules={[{ required: true, message: 'Please input your name!' }]}
+                            rules={[{ required: true, message: languageFunc(lang,
+                                    'Пожалуйста, введите ваше имя!',
+                                    'Please input your name!',
+                                    'Bitte geben Sie Ihren Namen ein!')},
+                                {min:3, message:languageFunc(lang,
+                                        'Имя должен состоять минимум из 3 символов!',
+                                        'Name must be minimum 3 characters!',
+                                        'Das Passwort muss aus mindestens 6 Zeichen bestehen!')}]}
                         >
                             <Input
                                 prefix={<UserOutlined className="site-form-item-icon" />}
                                 type="name"
-                                placeholder="Your name"
+                                placeholder={languageFunc(lang,
+                                    'Ваше имя',
+                                    'Your name',
+                                    'Dein Name')}
                             />
                         </Form.Item>
                         <Form.Item
                             name="password"
                             rules={[
-                                { required: true, message: 'Please input your Password!' },
-                                { min: 6, message: 'Password must be minimum 6 characters.' }
+                                { required: true, message: languageFunc(lang,
+                                        'Пожалуйста, введите свой пароль!',
+                                        'Please input your Password!',
+                                        'Bitte geben Sie Ihr Passwort ein!')},
+                                { min: 6, message:languageFunc(lang,
+                                        'Пароль должен состоять минимум из 6 символов!',
+                                        'Password must be minimum 6 characters!',
+                                        'Das Passwort muss aus mindestens 6 Zeichen bestehen!')}
                                 ]}
                         >
                             <Input
                                 prefix={<LockOutlined className="site-form-item-icon" />}
                                 type="password"
-                                placeholder="Password"
+                                placeholder={languageFunc(lang,
+                            'Пароль',
+                            'Password',
+                            'Passwort')}
                             />
                         </Form.Item>
 
 
-                        <Form.Item
+                        {/*<Form.Item
                             name="upload"
-                            label="Upload"
+                            label={languageFunc(lang,
+                                'Фотография',
+                                'The photo',
+                                'Das Foto')}
                             //valuePropName="fileList"
                             //valuePropName={file}
-                            //getValueFromEvent={normFile}
+                            //getValueFromEvent={'normFile'}
                             onChange={prepareFileToUpload}
                         >
                             <Upload name="logo" action="/upload.do" listType="picture">
-                                <Button icon={<UploadOutlined />}>Click to upload</Button>
+                                <Button icon={<UploadOutlined />}>{languageFunc(lang,
+                                    'Нажмите, чтобы загрузить',
+                                    'Click to upload',
+                                    'Klicken Sie zum Hochladen')}
+                                    </Button>
                             </Upload>
-                        </Form.Item>
+                        </Form.Item>*/}
+                        <input type="file" onChange={prepareFileToUpload}/>
                         <Form.Item>
 
                             {!!error && <div className={s.red}>Почта занаята</div>}
                             {!!isFetching && <Button type="primary" loading className="login-form-button">
-                                Sign Up
+                                {languageFunc(lang,
+                                    'Зарегистрироваться',
+                                    'Sign Up',
+                                    'Anmeldung')}
                             </Button>}
                             {!isFetching && <Button type="primary" htmlType="submit" className="login-form-button">
-                                Sign Up
+                                {languageFunc(lang,
+                                    'Зарегистрироваться',
+                                    'Sign Up',
+                                    'Anmeldung')}
                             </Button>}
-                             <NavLink to={'/login'}>Уже есть аккаунт?</NavLink>
+                             <NavLink to={'/login'}>{languageFunc(lang,
+                                 'Уже есть аккаунт?',
+                                 'Already have an account?',
+                                 'Sie haben bereits ein Konto?')}</NavLink>
                         </Form.Item>
                     </Form>
                 </div>
