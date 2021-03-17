@@ -144,7 +144,7 @@ const RegisterPage = ({LoginAuthThunk, lang, isSuccess, login, isAuthenticated, 
                         </Form.Item>
 
 
-                        {/*<Form.Item
+                        <Form.Item
                             name="upload"
                             label={languageFunc(lang,
                                 'Фотография',
@@ -162,10 +162,9 @@ const RegisterPage = ({LoginAuthThunk, lang, isSuccess, login, isAuthenticated, 
                                     'Klicken Sie zum Hochladen')}
                                     </Button>
                             </Upload>
-                        </Form.Item>*/}
-{/*
-                        <input type="file" onChange={prepareFileToUpload}/>
-*/}
+                        </Form.Item>
+
+                        {/*<input type="file" onChange={prepareFileToUpload}/>*/}
                         <Form.Item>
 
                             {!!error && <div className={s.red}>Почта занаята</div>}
