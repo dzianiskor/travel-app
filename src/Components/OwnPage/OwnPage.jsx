@@ -21,9 +21,9 @@ const OwnPage = ({t, countrysForCard, lang, inputValue, SearchArr, isFetching, a
 
                 <h1>
                     {languageFunc(lang,
-                        'Найдите лучшее место',
-                        'Find the best place to visit',
-                        'Finde den besten Ort')}</h1>
+                        'Путешествие начинается здесь',
+                        'Where your journey begins',
+                        'Wo deine Reise beginnt')}</h1>
                 <div className={s.fl}>
                 <div className={s.input}>
                     <Search

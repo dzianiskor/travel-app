@@ -3,7 +3,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 
 
-import Header from "../Components/Header/Header";
+import Header from "../Components/Header/Header1"; //iq-developer
 import {editLang} from "../redux/reducers/LangReducer";
 import {editArr, editInputValue} from "../redux/reducers/CountryCardsReducer";
 import {withRouter} from "react-router-dom";
