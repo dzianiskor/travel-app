@@ -86,17 +86,32 @@ const Gallery = ({allArr, lang, id, token, countryInfo, isAuthenticated}) => {
                                 <div>
                                     {!!isAuthenticated && <Rater  setModal={ setModal} galleryId={countryInfo.galleries[index]._id}
                                            token={token} id={id} />}
-                                    {!modal && <div onClick={() => {
+                                    {!modal && <div className={s.pointer} onClick={() => {
                                         setModal(true)
-                                           }}>Посмотреть проголосовавших</div>}
-                                    {!!modal && !countryInfo.galleries[index].ratings && <div>Проголосовавших нету</div>}
+                                           }}> {languageFunc(lang,
+                                        'Посмотреть проголосовавших',
+                                        'View Voters',
+                                        'Wähler anzeigen')}</div>}
+                                    {!!modal && !countryInfo.galleries[index].ratings && <div>{languageFunc(lang,
+                                        'Проголосовавших нету',
+                                        'No one voted ',
+                                        'Niemand stimmte ab ')}</div>}
 
 
                                     {!!modal && !!countryInfo.galleries[index].ratings && <div>{countryInfo.galleries[index].ratings.map(r => <div key={r.user.email}>
-                                        email: {r.user.email}, raiting: {r.rating}
+                                        {languageFunc(lang,
+                                            'Почта',
+                                            'Email',
+                                            'Email')}: {r.user.email}, {languageFunc(lang,
+                                        'оценка',
+                                        'raiting',
+                                        'Bewertung ')}: {r.rating}
 
                                     </div>)}
-                                        <div onClick={() => setModal(false)}>Скрыть голосовавших</div>
+                                        <div className={s.pointer} onClick={() => setModal(false)}>{languageFunc(lang,
+                                            'Скрыть голосовавших',
+                                            'Hide voters',
+                                            'Wähler verstecken')}</div>
 
                                     </div> }
 
