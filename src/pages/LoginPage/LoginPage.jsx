@@ -6,7 +6,7 @@ import s from './LoginPage.module.css';
 
 
 import { Form, Input, Button } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, CloseOutlined } from '@ant-design/icons';
 
 import {NavLink} from "react-router-dom";
 import {languageFunc} from "../../common/functions/functions";
@@ -41,7 +41,7 @@ const LoginPage = ({isFetching, LoginAuthThunk, isError,
     return (
         <div className={s.login}>
             <div className={s.modal}>
-                <NavLink className={s.kr} to={'/'}>x </NavLink>
+                <NavLink className={s.kr} to={'/'}><CloseOutlined /> </NavLink>
                 <div className={s.wrapp}>
                 <h1>{languageFunc(lang,
                     'Вход',
