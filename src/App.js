@@ -37,7 +37,8 @@ function App({lang}) {
                              logout={logout}
                              isAuthenticated={isAuthenticated} />
             <Route path={'/'} exact render={() => <OwnPageContainer ava={ava} lang={lang} t={t} />} />
-            <Route path={'/country/:id'}  render={() => <CountryPageContainer token={token} />} />
+            <Route path={'/country/:id'}  render={() => <CountryPageContainer isAuthenticated={isAuthenticated}
+                                                                              token={token} />} />
             <Route path={'/register'} render={() => <RegisterPageContainer isAuthenticated={isAuthenticated}
                                                                            login={login}/>}/>
             <Route path={'/login'} render={() => <LoginPageContainer isAuthenticated={isAuthenticated}

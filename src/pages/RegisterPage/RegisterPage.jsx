@@ -27,8 +27,7 @@ const RegisterPage = ({LoginAuthThunk, lang, isSuccess, login, isAuthenticated, 
     const [error, setError] = useState(false)
 
     const onFinish = (values) => {
-        if (!!values.upload) {
-            values.upload = file;
+        if (!!file) {
             setError(false)
             IsFetching(true)
             apiLogin.register({email:values.email,name:values.name, password:values.password}).then(reg => {
@@ -164,7 +163,9 @@ const RegisterPage = ({LoginAuthThunk, lang, isSuccess, login, isAuthenticated, 
                                     </Button>
                             </Upload>
                         </Form.Item>*/}
+{/*
                         <input type="file" onChange={prepareFileToUpload}/>
+*/}
                         <Form.Item>
 
                             {!!error && <div className={s.red}>Почта занаята</div>}

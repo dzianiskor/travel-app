@@ -11,7 +11,7 @@ import Modal from "../Modal/Modal";
 
 
 
-const Gallery = ({allArr, lang, id, token, countryInfo}) => {
+const Gallery = ({allArr, lang, id, token, countryInfo, isAuthenticated}) => {
 
     const [modal, setModal] = useState(false)
 
@@ -84,16 +84,22 @@ const Gallery = ({allArr, lang, id, token, countryInfo}) => {
                             return <li className={s.active} key={el}>
                                 {el}
                                 <div>
-                                    <Rater galleryId={countryInfo.galleries[index]._id}
-                                           token={token} id={id} />
-                                    {!!modal && <Modal setModal={setModal} inf={countryInfo.galleries[index]} />}
-
-                                    <div onClick={() => {
+                                    {!!isAuthenticated && <Rater  setModal={ setModal} galleryId={countryInfo.galleries[index]._id}
+                                           token={token} id={id} />}
+                                    {!modal && <div onClick={() => {
                                         setModal(true)
-                                               console.log('проголосовавшиеся',
-                                                   countryInfo.galleries[index]
-                                               )
-                                           }}>Посмотреть проголосовавших</div>
+                                           }}>Посмотреть проголосовавших</div>}
+                                    {!!modal && !countryInfo.galleries[index].ratings && <div>Проголосовавших нету</div>}
+
+
+                                    {!!modal && !!countryInfo.galleries[index].ratings && <div>{countryInfo.galleries[index].ratings.map(r => <div key={r.user.email}>
+                                        email: {r.user.email}, raiting: {r.rating}
+
+                                    </div>)}
+                                        <div onClick={() => setModal(false)}>Скрыть голосовавших</div>
+
+                                    </div> }
+
                                 </div>
 
                             </li>

@@ -12,7 +12,7 @@ import Time from "../Widgets/Time/Time";
 import CirklePreloader from "../preloaders/CirklePreloader/CirklePreloader";
 import {languageFunc} from "../../common/functions/functions";
 
-const CountryPage = ({ lang, countryInfo, isFetching, id, token}) => {
+const CountryPage = ({ lang, countryInfo, isFetching, id, token, isAuthenticated}) => {
 
 
     return (
@@ -56,7 +56,7 @@ const CountryPage = ({ lang, countryInfo, isFetching, id, token}) => {
 
 
 
-                <Gallery countryInfo={countryInfo} id={id} token={token} allArr={countryInfo.galleries} lang={lang}  />
+                <Gallery isAuthenticated={isAuthenticated} countryInfo={countryInfo} id={id} token={token} allArr={countryInfo.galleries} lang={lang}  />
 
 
                 <Mappp country={countryInfo.countryIso}

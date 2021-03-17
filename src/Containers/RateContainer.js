@@ -8,11 +8,12 @@ const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 
 class Rater extends React.Component {
     state = {
-        value: 3,
+        value: 0,
     };
 
     handleChange = value => {
         this.setState({ value });
+        this.props.setModal(false)
         axios.post("https://dzianiskor-travel-app-server.herokuapp.com/api/ratings/set-rating", {
             galleryId:this.props.galleryId,
             rating: value
