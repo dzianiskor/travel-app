@@ -41,6 +41,7 @@ const LoginPage = ({isFetching, LoginAuthThunk, isError,
     return (
         <div className={s.login}>
             <div className={s.modal}>
+                <NavLink className={s.kr} to={'/'}>x </NavLink>
                 <div className={s.wrapp}>
                 <h1>{languageFunc(lang,
                     'Вход',
