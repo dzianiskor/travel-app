@@ -8,6 +8,16 @@
     text-align: center;
 }
 
+.pointer {
+    cursor:pointer;
+    transition: 0.5s;
+}
+
+.pointer:hover {
+    color:gold;
+    transition: 0.5s;
+}
+
 .dima {
     width: 500px;
     height: 500px;
