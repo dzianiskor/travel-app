@@ -17,8 +17,8 @@
   color: #000;
   text-decoration: none;
   position: absolute;
-  left: 20px;
-  top: 10px;
+  left: 30px;
+  top: 12px;
 }
 .unvisable {
   background-color: #fafafa;
@@ -48,21 +48,5 @@
 
 
 @media (max-width: 520px) {
- .logo {
-     font-size: 0.75em;
-     top:20px;
-     left:10px;
- }
 
-  .selected {
-      left:10px;
-  }
-
-  .selected {
-      left:190px;
-  }
-
-  .inp {
-      left: 60px;
-  }
 }
