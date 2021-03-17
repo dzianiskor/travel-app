@@ -7,6 +7,8 @@ import {NavLink} from "react-router-dom";
 import { Select } from 'antd';
 import {languageFunc} from "../../common/functions/functions";
 
+import loginImg from "../../assets/login.png"
+
 const { Option } = Select;
 
 
@@ -42,7 +44,9 @@ const Header = ({lang,
         <div className={cn(s.header,
             {[s.visable]:!!visable && location.pathname === '/'},
             {[s.unvisable]: !visable && location.pathname === '/' })}>
-            <div className="nav-left"><NavLink className={s.logo} to={'/'}>Travel</NavLink></div>
+            <div className="nav-left">
+              <NavLink className={s.logo} to={'/'}>Travel</NavLink>
+            </div>
 
             <div>{name}</div>
             <div className={s.selected}>
@@ -73,13 +77,12 @@ const Header = ({lang,
 
                     allowClear   />}
             </div>}
-            <div>
+            <div className={s.authorization}>
                 {!isAuthenticated
             && location.pathname !== '/login'
-            && <NavLink to={'/login'}>{languageFunc(lang,
-                    'Авторизироваться',
-                    'Sign',
-                    'Anmeldung ')}</NavLink>}
+            &&           <NavLink to={"/login"}>
+            <img src={loginImg} alt={languageFunc(lang, "Авторизироваться", "Sign", "Anmeldung ")} />
+            </NavLink>}
             </div>
             {!!isAuthenticated && <div onClick={() => {
                 IsSuccess(null)
