@@ -20,7 +20,9 @@
 }
 
 .kr {
+    cursor:pointer;
     position:relative;
+    top:5px;
     left:300px;
 }
 
